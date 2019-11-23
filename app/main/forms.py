@@ -11,7 +11,7 @@ class PitchForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):
-    """docstring for UpdateProfile."""
+    """docstring for UpdateProfile. for updating user profiles"""
 
     bio = TextAreaField('Bio', validators = [Required()])
     submit = SubmitField('Submmit')
