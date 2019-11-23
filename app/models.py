@@ -95,5 +95,5 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(arg):
+    def get_comments(cls,pitch_id):
         comments = Comment.query.filter_by(pitch_id = pitch_id).all()
