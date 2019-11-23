@@ -38,7 +38,7 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
 
 
-class Pitch(object):
+class Pitch(db.Model):
     """docstring for Pitch class that defines the piches object. Getting pitches and single pitch"""
     __tablename__ = 'pitches'
 
@@ -78,4 +78,22 @@ class Pitch(object):
         for pitch in pitches:
             pitches_count += 1
 
-        return pitches_count  
+        return pitches_count
+
+class Comment(db.Model):
+    """docstring for Comment. this defines the comment object and getting the comments based on the pitch id"""
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    comment = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(arg):
+        comments = Comment.query.filter_by(pitch_id = pitch_id).all()
