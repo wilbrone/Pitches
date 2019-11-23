@@ -43,7 +43,16 @@ class Pitch(object):
     __tablename__ = 'pitches'
 
     id = db.Columns(db.Integer, primary_key = True)
+    title = db.Column(db.String)
+    content = db.Column(db.String(1000))
+    category = db.Column(db.String)
+    posted = db.Column(db.DateTime, default = datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    like = db.Column(db.Integer)
+    dislike = db.Column(db.Integer)
 
-    def __init__(self, arg):
-        super(, self).__init__()
-        self.arg = arg
+    comments = db.relationships('Comment', backref = 'pitch_id', lazy = "dynamic")
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
