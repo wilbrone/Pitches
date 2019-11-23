@@ -39,7 +39,7 @@ class User(UserMixin,db.Model):
 
 
 class Pitch(object):
-    """docstring for Pitch class that defines the piches object."""
+    """docstring for Pitch class that defines the piches object. Getting pitches and single pitch"""
     __tablename__ = 'pitches'
 
     id = db.Columns(db.Integer, primary_key = True)
@@ -56,3 +56,26 @@ class Pitch(object):
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def get_pitches(cls,category):
+        pitches = Pitch.query.filter_by(category = category).all()
+
+        return pitches
+
+    @classmethod
+    def get_single_pitch(cls,id):
+        single_pitch = Pitch.query.filter_by(id = id).first()
+
+        return single_pitch
+
+    @classmethod
+    def count_pitches(cls,uname):
+        user = User.query.filter_by(username = uname).first()
+        pitches = Pitch.query.filter_by(user_id = user.id).all()
+
+        pitches_count = 0
+        for pitch in pitches:
+            pitches_count += 1
+
+        return pitches_count  
