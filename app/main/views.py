@@ -75,7 +75,7 @@ def new_pitches():
 
 
 @main.route('/pitches/pickup_pitches')
-def interview_pitches():
+def pickup_pitches():
 
     pitches = Pitch.get_pitches('pickup-line')
 
@@ -102,7 +102,7 @@ def promotion_pitches():
 
     return render_template("promotion_pitches.html", pitches = pitches)
 
-@main.route('/pitch/<int:id>',method = ['GET','POST'])
+@main.route('/pitch/<int:id>',methods = ['GET','POST'])
 def pitch(id):
     pitch = Pitch.get_single_pitch(id)
     posted_date = pitch.posted.strftime('%b %d, %Y')
@@ -131,7 +131,7 @@ def pitch(id):
         new_comment.save_comment()
 
     comments = Comment.get_comments(pitch)
-    return.render_template("pitch.html",pitch = pitch,comment_form = comment_form,comments = comments,date = posted_date)
+    return render_template('pitch.html', pitch=pitch, comment_form=comment_form, comments=comments, date=posted_date)
 
 @main.route('/user/<uname>/pitches')
 def user_pitches(uname):

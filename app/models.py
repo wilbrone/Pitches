@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
 
-@login_manager.user_load
+@login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
@@ -34,6 +34,11 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
 
+    # @login_manager.user_loader
+    # def load_user(user_id):
+    #     return User.query.get(int(user_id))
+
+
     def __repr__(arg):
         return f'User {self.username}'
 
@@ -42,7 +47,7 @@ class Pitch(db.Model):
     """docstring for Pitch class that defines the piches object. Getting pitches and single pitch"""
     __tablename__ = 'pitches'
 
-    id = db.Columns(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String)
     content = db.Column(db.String(1000))
     category = db.Column(db.String)
@@ -51,7 +56,7 @@ class Pitch(db.Model):
     likes = db.Column(db.Integer)
     dislikes = db.Column(db.Integer)
 
-    comments = db.relationships('Comment', backref = 'pitch_id', lazy = "dynamic")
+    comments = db.relationship('Comment', backref = 'pitch_id', lazy = "dynamic")
 
     def save_pitch(self):
         db.session.add(self)
