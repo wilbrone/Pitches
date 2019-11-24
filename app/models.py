@@ -17,6 +17,7 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(255), index = True)
     full_name = db.Column(db.String(255))
+    email = db.Column(db.String(255))
     bio = db.Column(db.String(300))
     pass_secure = db.Column(db.String(255))
 
