@@ -17,7 +17,7 @@ def index():
     title = "Welcome to One Minute Perfect Pitch"
 
     # getting pitches by category
-    pickup_pitches = Pitch.get_pitches("pickup-line")
+    pickup_pitches = Pitch.get_pitches("pickup_pitches")
     interview_pitches = Pitch.get_pitches("interview")
     product_pitches = Pitch.get_pitches("product")
     promotion_pitches = Pitch.get_pitches("promotion")
@@ -77,7 +77,7 @@ def new_pitches():
 @main.route('/pitches/pickup_pitches')
 def pickup_pitches():
 
-    pitches = Pitch.get_pitches('pickup-line')
+    pitches = Pitch.get_pitches('pickup_pitches')
 
     return render_template("pickup_line.html", pitches = pitches)
 
