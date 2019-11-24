@@ -6,4 +6,4 @@ def four_Ow_four(error):
 	'''
 	Function to render 404 error page when the page do not show
 	'''
-	return render_template('404.html'),404
+	return render_template('four-four.html'),404
