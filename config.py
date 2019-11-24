@@ -7,7 +7,7 @@ class Config:
     SIMPLEMDE_USE_CDN = True
 
 	# SQLALCHEMY_TRACK_MODIFICATIONS = False
-	UPLOADED_PHOTOS_DEST ='app/static/photos'
+	# UPLOADED_PHOTOS_DEST ='app/static/photos'
 	SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://aphya5:NewPasword@localhost/pitches'
 
 	# email configurations
