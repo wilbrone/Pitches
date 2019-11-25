@@ -40,7 +40,7 @@ class User(UserMixin,db.Model):
     #     return User.query.get(int(user_id))
 
 
-    def __repr__(arg):
+    def __repr__(self):
         return f'User {self.username}'
 
 
